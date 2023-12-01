@@ -21,7 +21,7 @@ namespace ForcaConsole
                 char letra = ReceberLetra();
                 if (palavraSorteada.Contains(letra))
                 {
-                    if (VerificaLetraRepetida(letra, letraGuardada)) 
+                    if (VerificaLetraRepetida(letra, letraGuardada))
                     {
                         Console.WriteLine("\nVocê ja inseriu essa Letra");
 
@@ -29,7 +29,7 @@ namespace ForcaConsole
                     else
                     {
                         palavraEscondida = VerificarLetra(palavraEscondida, palavraSorteada, letra);
-                        if(!VerificarVitoria(palavraEscondida))
+                        if (!VerificarVitoria(palavraEscondida))
                         {
                             break;
                         }
@@ -43,11 +43,15 @@ namespace ForcaConsole
                     if (Perdeu(erro))
                         break;
                 }
-                
-             Console.WriteLine($"\n{string.Join("", palavraEscondida)}");
+
+                Console.WriteLine($"\n{string.Join("", palavraEscondida)}");
 
             }
+
         }
+    
+       
+       
         private static char[] AlterarArray(char[] palavraEscondida, string palavraSorteada)
         {
             for (int i = 0; i < palavraSorteada.Length; i++)
@@ -76,10 +80,37 @@ namespace ForcaConsole
         }
         private static char ReceberLetra()
         {
-            Console.Write("Insira uma letra: ");
-            char letra = Console.ReadKey().KeyChar;
+            Console.Write("insira uma letra: ");
+            char letra = Char.ToLower(Console.ReadKey().KeyChar);
+            try
+            {
+                
+                string caracteresValidos = "qwertyuiopasdfghjklçzxcvbnm";
+                if (caracteresValidos.Contains(letra))
+                {
+                    return letra;
+                }
+                throw new Exception();
+
+            }
+            catch  
+            {
+                
+                if (letra == ' ')
+                {
+                    Console.WriteLine("\nVocê digitou um espaço vazio");
+                }
+                else
+                {
+                    Console.WriteLine($"\nVocê digitou um caractere invalido: {letra} ");
+                }
+            }
             return letra;
+
+
         }
+    
+        
         private static bool VerificarVitoria(char[] palavraEscondida)
         {
             if (palavraEscondida.Contains('_'))
