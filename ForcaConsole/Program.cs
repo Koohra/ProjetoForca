@@ -7,7 +7,6 @@
             ColetarDados.MetodoPrincipal();
 
 
-            //bool numero = int.TryParse(Console.ReadLine(), out int num2);
 
         }
     
