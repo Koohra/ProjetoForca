@@ -10,7 +10,7 @@ namespace ForcaConsole
     {
         internal static void MetodoPrincipal(string categoriaSorteada, string palavraSorteada)
         {
-            ImprimirMensagemInicial();
+            InterfaceUsuario.ImprimirMensagemInicial();
             char[] palavraEscondida = new char[palavraSorteada.Length];
             palavraEscondida = AlterarArray(palavraEscondida, palavraSorteada);
             Console.WriteLine($"A categoria da palavra é: {categoriaSorteada} ");
@@ -33,12 +33,12 @@ namespace ForcaConsole
                         {
                             break;
                         }
-                        
                     }
                 }
                 else
                 {
                     erro++;
+                    InterfaceUsuario.DesenhoForca(erro);
                     Console.WriteLine($"\nVoce errou {erro} vezes");
                     if (Perdeu(erro))
                         break;
@@ -93,8 +93,9 @@ namespace ForcaConsole
 
         private static bool Perdeu(int erro)
         {
-            if (erro == 6)
+            if (erro == 7)
             {
+                Console.WriteLine("Você perdeu!");
                 return true;
             }
             return false;
@@ -110,11 +111,6 @@ namespace ForcaConsole
                 letraGuardada.Add(letra);
                 return false;
             }
-        }
-        private static void ImprimirMensagemInicial()
-        {
-            Console.WriteLine("BEM VINDO AO JOGO DA FORCA");
-            Console.WriteLine("Tente adivinhar qual é a palavra\n");
-        }
+        }  
     }
 }
