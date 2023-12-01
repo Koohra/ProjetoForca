@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ForcaConsole
 {
-    internal class Usuario
+    internal static class Usuario
     {
         internal static void MetodoPrincipal(string categoriaSorteada, string palavraSorteada)
         {
+            ImprimirMensagemInicial();
             char[] palavraEscondida = new char[palavraSorteada.Length];
             palavraEscondida = AlterarArray(palavraEscondida, palavraSorteada);
             Console.WriteLine($"A categoria da palavra é: {categoriaSorteada} ");
@@ -109,6 +110,11 @@ namespace ForcaConsole
                 letraGuardada.Add(letra);
                 return false;
             }
+        }
+        private static void ImprimirMensagemInicial()
+        {
+            Console.WriteLine("BEM VINDO AO JOGO DA FORCA");
+            Console.WriteLine("Tente adivinhar qual é a palavra\n");
         }
     }
 }
